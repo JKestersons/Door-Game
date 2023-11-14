@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Door Game</title>
+    <style>
+        h1 {
+  position: absolute;
+  right: 34%;
+  top: -3%;
+}
+img.door {
+  width: 100px;
+  height: 200px;
+}
+div.door-container {
+  display: inline-block;
+  margin-left: 1rem;
+}
+h1#hello-message {
+  position: absolute;
+  top: 5%;
+  right: 40%;
+  margin: 2px;
+}
+div#main-content {
+  height: 100px;
+  width: 450px;
+  position: absolute;
+  right: 32%;
+  top: 35%;
+  text-align: center;
+  display: none;
+}
+#name {
+  position: absolute;
+  right: 50%;
+  top: 7%;
+}
+#button-name {
+  position: absolute;
+  right: 42%;
+  top: 7%;
+}
+.container {
+  position: relative;
+  height: 800px;
+  width: 1050px;
+  background: linear-gradient(135deg, purple 0%, white 50%);
+  float: right;
+}
+#web {
+  position: absolute;
+  left: 34%;
+  top: 12%;
+}
+#spider {
+  position: absolute;
+  left: 34%;
+  top: 14%;
+  animation: spiderBounce 6s ease-in-out infinite;
+}
+@keyframes spiderBounce {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(50px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+#halloween-image {
+  position: absolute;
+  right: 38%;
+  top: 14%;
+  animation: halloween 5s ease-in-out infinite;
+}
+
+@keyframes halloween {
+  0% {
+    transform: rotate(0deg);
+  } 25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  } 100% {
+    transform: rotate(-5deg);
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+ <h1>Welcome All Boys & Ghouls!!</h1>  
+<img id="web" src="https://westmeccoding.github.io/spider-animation/halloween-spider-web.png" width=100 height=100/> <img id="spider" src="https://westmeccoding.github.io/spider-animation/halloween-spider-noweb.png" width=100 height=100/>
+<img id="halloween-image" src="https://pbs.twimg.com/media/D8Ayh3pWwAMyLv6.png" width=150 height=150/>
+  
+<input id="name" type="text" placeholder="Type your name here"/>
+<button id="button-name" type="button" onclick="sayHello()">Say Hello</button>
+  
+  <div id="main-content">
+<h1 id="hello-message"></h1>
+    <br>
+      <h2>There are two doors! Behind one door is a scary monster and behind the other is some sweet treats! Choose wisely!</h2>
+      <p>Number of choices this session:</p>
+      <p>Correct choices this session:</p>
+      <p>Percentage Correct:</p>
+<!--       <div width=100 height=200 ></div> -->
+      
+    
+    <div class="door-container">
+      <img class="door" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDZ4MN_ZXw2GV6u84wQWymZ2nTHE4CInvPBw&usqp=CAU" id="left-door">
+      <button id="choose-left" onclick="chooseRandomDoor('left')">Choose Left
+     </div>
+     <div class="door-container">
+        <img class="door" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDZ4MN_ZXw2GV6u84wQWymZ2nTHE4CInvPBw&usqp=CAU" id="right-door">
+       <button id="choose-right" onclick="chooseRandomDoor('right')">Choose Right
+     </div>
+   </div>
+  </div>
+    <script>
+        const nameInput = document.getElementById('name');
+const mainContent = document.getElementById('main-content');
+const helloMessage = document.getElementById('hello-message');
+const nameButton = document.getElementById('button-name');
+const leftDoor = document.getElementById('left-door');
+const rightDoor = document.getElementById('right-door');
+let candyBasket = "https://www.dylanscandybar.com/cdn/shop/products/8928-PRODUCT_01-500_500-1424881876723_01bc4005-c559-455d-a648-5d03bf8aec6c.png";
+let monster = "https://i.pinimg.com/originals/d3/b5/f7/d3b5f7c6f361383b19ffe3d36e3660d7.png";
+
+function sayHello() {
+  const userName = nameInput.value;
+  console.log(userName);
+  helloMessage.textContent = "Hello " + userName;
+    nameInput.style.display = "none";
+    mainContent.style.display = "block";
+    nameButton.style.display = "none";
+}
+  
+
+
+function chooseRandomDoor(selection) {
+  let correctDoor = Math.floor(Math.random() * 2) + 1;  
+  if (correctDoor == 1 && selection == "left") {
+    leftDoor.src = candyBasket;
+    rightDoor.src = monster;
+  } else if (correctDoor == 2 && selection == "right") {
+    rightDoor.src = candyBasket;
+    leftDoor.src = monster;
+  } else {
+    leftDoor.src = monster;
+    rightDoor.src = monster;
+  }
+}
+
+    </script>
+</body>
+</html>
